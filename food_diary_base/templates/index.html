@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Food Diary</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <style>
+        {% include 'static/styles.css' %}
+        </style>
+
+</head>
+<body>
+
+<div class="jumbotron bg text-center text-center">
+  <div class="transbox">
+  <div class="well">
+      <h1 text-center> FOOD DIARY</h1>
+      <span style="display:inline-block; width: 5px;"></span>
+      <h3> DAYS </h3>
+
+<ul >
+    {% for day in days %}
+    <li><a href="http://127.0.0.1:8000/day/{{day.id}}">{{day}}</a></li>
+    {% endfor %}
+
+
+</ul>
+    </div>
+</div>
+
+ </div>
+
+
+</body>
+</html>

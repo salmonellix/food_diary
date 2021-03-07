@@ -45,9 +45,13 @@ class Meal(models.Model):
     )
     meal_name = models.CharField(max_length=100, choices=MEALS)
     products = models.ManyToManyField(Product, blank=True, default='')
+    #day = models.oreignKey(Day, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.meal_name
+
+    def get_products(self):
+        return self.products
 
 
 class Day(models.Model):
@@ -57,4 +61,7 @@ class Day(models.Model):
 
 
     def __str__(self):
-        return self.date
+        return str(self.date)
+
+    def get_meals(self):
+        return self.meals
