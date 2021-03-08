@@ -17,7 +17,7 @@ There is also available API to enter product list into database.
 Run
 ====
 
-Build and run container:
+Build and run:
 ```
     docker-compose up -d --build
 ```
