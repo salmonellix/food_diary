@@ -23,13 +23,29 @@ class Profile(models.Model):
 
 class Product(models.Model):
     product_name = models.CharField(max_length=100)
-    calories = models.IntegerField(default=0)
-    proteins = models.IntegerField(default=0)
-    carbs = models.IntegerField(default=0)
-    fats = models.IntegerField(default=0)
+    calories = models.FloatField(default=0,null=True)
+    proteins = models.FloatField(default=0,null=True)
+    carbs = models.FloatField(default=0,null=True)
+    fats = models.FloatField(default=0,null=True)
+    amount = models.FloatField(default=0,null=True)
 
     def __str__(self):
         return self.product_name
+
+    def count_kcal(self):
+        return self.calories* self.amount
+
+
+
+
+class Day(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    date = models.DateField(default='')
+
+
+    def __str__(self):
+        return str(self.date)
+
 
 
 class Meal(models.Model):
@@ -45,23 +61,10 @@ class Meal(models.Model):
     )
     meal_name = models.CharField(max_length=100, choices=MEALS)
     products = models.ManyToManyField(Product, blank=True, default='')
-    #day = models.oreignKey(Day, on_delete=models.CASCADE)
+    day = models.ForeignKey(Day, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.meal_name
 
     def get_products(self):
         return self.products
-
-
-class Day(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    date = models.DateField(default='')
-    meals = models.ManyToManyField(Meal, blank=True, default='')
-
-
-    def __str__(self):
-        return str(self.date)
-
-    def get_meals(self):
-        return self.meals

@@ -27,13 +27,13 @@
 
 
 <ul >
-    {% for date in day %}
-    {% for meal in date.meals.all %}
+    {% for meal in meals %}
     <li>{{meal}}</li>
+    <ul >
+    {% for product in meal.products.all %}
+    <li>{{product}}</li>
+    {% endfor %}</ul>
     {% endfor %}
-    {% endfor %}
-
-
 </ul>
     </div>
 </div>

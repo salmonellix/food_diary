@@ -23,9 +23,11 @@ def home(request):
 
 def day(request, rid):
     day = Day.objects.filter(id= rid)
+    meals = Meal.objects.filter(day = day[0])
 
     context = {
-        'day': day
+        'day': day,
+        'meals': meals
     }
 
     return render(request, 'day.html', context)
