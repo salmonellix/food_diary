@@ -1,7 +1,9 @@
 
 FOOD DIARY
 =====
+
 (IN PROGRESS)
+
 A Django RESTful Application project using Docker
 ===
 
