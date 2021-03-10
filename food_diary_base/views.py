@@ -6,10 +6,14 @@ from food_diary_api.models import Meal, Profile, Product, Day
 
 
 def home(request):
+
+    return render(request, 'base.html')
+
+def diary(request):
     days = Day.objects.all()
 
     context = {'days': days}
-    return render(request, 'index.html', context)
+    return render(request, 'diary.html', context)
 
 
 def day(request, rid):
@@ -21,7 +25,7 @@ def day(request, rid):
         'meals': meals
     }
 
-    return render(request, 'day.html', context)
+    return render(request, 'index.html', context)
 
 
 
