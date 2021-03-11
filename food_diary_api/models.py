@@ -33,7 +33,7 @@ class Product(models.Model):
         return self.product_name
 
     def count_kcal(self):
-        return self.calories* self.amount
+        return (self.calories* self.amount)/100
 
 
 
@@ -68,3 +68,10 @@ class Meal(models.Model):
 
     def get_products(self):
         return self.products
+
+    def count_kcal(self):
+        kcals = 0
+        p_list = self.get_products()
+        for p in list(p_list):
+            kcals += p.calories
+        return kcals

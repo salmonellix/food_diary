@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import filters
 from rest_framework import viewsets
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from food_diary_api.models import Meal, Profile, Product, Day
 
@@ -25,9 +26,12 @@ def day(request, rid):
         'meals': meals
     }
 
-    return render(request, 'index.html', context)
+    return render(request, 'day.html', context)
 
-
-
-
-
+@api_view(['DELETE', 'GET'])
+def productDelete(request, id,rid):
+    meal = Meal.objects.get(id=id)
+    product = Product.objects.get(id=rid)
+    meal.products.remove(product)
+    day(request, meal.day.id)
+    return day(request, meal.day.id)
