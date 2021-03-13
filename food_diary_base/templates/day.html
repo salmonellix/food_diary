@@ -1,116 +1,59 @@
-<!DOCTYPE html>
-{% load static %}
+{% extends 'base.html' %}
 <head>
-	<title>Food Diary</title>
 
-
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-
-	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-
-	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap" rel="stylesheet">
-
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link id="theme-style" rel="stylesheet" type="text/css" href="">
-	{#    <script src="static/scripts.js"></script>#}
-	    <style>
-        {% include 'static/styles.css' %}
-        </style>
 </head>
 <body>
 
-	<section class="s1">
-		<div class="main-container">
+	{% block header %}
+		<div class="left-column">
+			<img id="diary_pic" src="https://img.icons8.com/carbon-copy/2x/healthy-eating.png">
 
 
-
-			<div class="greeting-wrapper">
-				<h1>Food Diary</h1>
-			</div>
-
-
-			<div class="intro-wrapper">
-				<div class="nav-wrapper">
-
-					<!-- Link around dots-wrapper added after tutorial video -->
-
-
-					<ul id="navigation">
-						<li><a href="{% url 'home' %}">Home</a></li>
-					</ul>
-					<ul id="navigation">
-							{% for date in day %}
-						<li><a href="{% url 'diary'%}">Diary</a></li>
-						{% endfor %}
-					</ul>
-					<ul id="navigation">
-						<li><a href="">Add Product</a></li>
-					</ul>
-					<ul id="navigation">
-						<li><a href="">Log in</a></li>
-					</ul>
-				</div>
-
-
-
-
-				<div class="left-column">
-					<img id="diary_pic" src="https://img.icons8.com/carbon-copy/2x/healthy-eating.png">
-
-
-				</div>
-
-				<div class="right-column">
-
-					<div class="about-me">
-					<h4>DAY</h4>
-
-						{% for date in day %}
-					<p>{{date}}</p>
-						{% endfor %}
-
-				</div>
-
-				</div>
-
-
-
-				</div>
-			</div>
 		</div>
-	</section>
 
+		<div class="right-column">
 
+			<div class="about-me">
+			<h4>DAY</h4>
 
-	<section class="s2">
-		<div class="main-container">
-			<a href=""></a>
-			<h3 style="text-align: center;">MEALS</h3>
-			<ul >
-    		{% for meal in meals %}
-
-			<details class="details-example">
-			<summary ><a>{{meal}}</a></summary>
-				<ol id="ollist">
-				{% for product in meal.products.all %}
-		  		<li><a >{{product}}  </a>
-					<a style="font-size:10px;"> Amount [g/ml]: {{product.amount}} Kcal(100g): {{product.calories}}
-						 Proteins:{{product.proteins}}  Carbs:{{product.carbs}}  Fats:{{product.fats}}  </a>
-					<a>Kcal:{{product.count_kcal}}</a>
-					<a href="{% url 'product-delete' id=meal.id rid=product.id%} "> ->remove<-</a></li>
-
+				{% for date in day %}
+			<p>{{date}}</p>
 				{% endfor %}
-				</ol>
-			</details>
-
-    		{% endfor %}
-			</ul>
-
-			<h5><br></h5>
 
 		</div>
-	</section>
+
+		</div>
+	{% endblock %}
+
+
+	{% block content %}
+
+		<a href=""></a>
+		<h3 style="text-align: center;">MEALS</h3>
+		<ul >
+		{% for meal in meals %}
+
+		<details class="details-example">
+		<summary ><a>{{meal}}</a></summary>
+		<ol id="ollist">
+		{% for product in meal.products.all %}
+		<li><a >{{product}}  </a>
+		<a style="font-size:10px;"> Amount [g/ml]: {{product.amount}} Calories(100g): {{product.calories}}
+		Proteins:{{product.proteins}}  Carbs:{{product.carbs}}  Fats:{{product.fats}}  </a>
+		<a>Calories :{{product.count_kcal}}</a>
+		<a href="{% url 'product-delete' id=meal.id rid=product.id%} "> ->remove<-</a></li>
+
+		{% endfor %}
+		</ol>
+		</details>
+
+		{% endfor %}
+		<h4 style="text-align: center;">Day intake: {{kcals}}</h4>
+		</ul>
+
+		<h5><br></h5>
+	{% endblock %}
+
 
 	<script type="text/javascript" src="script.js"></script>
 </body>
-</html>

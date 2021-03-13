@@ -71,7 +71,7 @@ class Meal(models.Model):
 
     def count_kcal(self):
         kcals = 0
-        p_list = self.get_products()
+        p_list = self.products.get()
         for p in list(p_list):
             kcals += p.calories
         return kcals

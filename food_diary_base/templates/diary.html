@@ -1,101 +1,48 @@
-<!DOCTYPE html>
-{% load static %}
+{% extends 'base.html' %}
+
 <head>
-	<title>Food Diary</title>
 
-
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
-
-	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-
-	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Russo+One&display=swap" rel="stylesheet">
-
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link id="theme-style" rel="stylesheet" type="text/css" href="">
-	    <style>
-        {% include 'static/styles.css' %}
-        </style>
 </head>
 <body>
 
-	<section class="s1">
-		<div class="main-container">
+
+	{% block header %}
+	<div class="left-column">
+		<img id="diary_pic" src="https://img.icons8.com/carbon-copy/2x/healthy-eating.png">
+
+
+	</div>
+
+	<div class="right-column">
+
+		<div class="about-me">
+		<h4>DIARY</h4>
+
+		<p>...</p>
+
+	</div>
+
+	</div>
+	{% endblock %}
 
 
 
-			<div class="greeting-wrapper">
-				<h1>Food Diary</h1>
-			</div>
+	{% block content %}
+	<a href=""></a>
+	<h3 style="text-align: center;">DAYS</h3>
+	<ul>
 
+		{% for day in days %}
+			<li style="text-align: center;"><a href="http://127.0.0.1:8000/day/{{day.id}}">{{day}}</a></li>
+		{% endfor %}
 
-			<div class="intro-wrapper">
-				<div class="nav-wrapper">
+	</ul>
 
-					<!-- Link around dots-wrapper added after tutorial video -->
+	<h5><br></h5>
 
-
-					<ul id="navigation">
-						<li><a href="{% url 'home' %}">Home</a></li>
-					</ul>
-					<ul id="navigation">
-						<li><a href="{% url 'day' 1%}">Diary</a></li>
-					</ul>
-					<ul id="navigation">
-						<li><a href="">Add Product</a></li>
-					</ul>
-					<ul id="navigation">
-						<li><a href="">Log in</a></li>
-					</ul>
-				</div>
+	{% endblock %}
 
 
 
-
-				<div class="left-column">
-					<img id="diary_pic" src="https://img.icons8.com/carbon-copy/2x/healthy-eating.png">
-
-
-				</div>
-
-				<div class="right-column">
-
-					<div class="about-me">
-					<h4>DIARY</h4>
-
-					<p>...</p>
-
-				</div>
-
-				</div>
-
-
-
-				</div>
-			</div>
-		</div>
-	</section>
-
-
-
-	<section class="s2">
-		<div class="main-container">
-			<a href=""></a>
-			<h3 style="text-align: center;">DAYS</h3>
-			<ul >
-    {% for day in days %}
-    <li style="text-align: center;"><a href="http://127.0.0.1:8000/day/{{day.id}}">{{day}}</a></li>
-    {% endfor %}
-
-</ul>
-
-<h5><br></h5>
-
-
-
-
-		</div>
-	</section>
-
-	<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

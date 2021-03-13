@@ -1,44 +1,30 @@
-
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
+{% extends 'base.html' %}
 <head>
-    <meta charset="UTF-8">
-    <title>Food Diary</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-
-    <style>
-        {% include 'static/styles.css' %}
-        </style>
 
 </head>
 <body>
 
+				{% block header %}
+				<div class="left-column">
+					<img id="profile_pic" src="https://img.icons8.com/carbon-copy/2x/healthy-eating.png">
+
+
+				</div>
+
+				<div class="right-column">
+
+					<div class="about-me">
+					<h4>ABOUT</h4>
+
+					<p>Food diary that allows you to easily control the amount of calories consumed during the day.</p>
+					<p>Each day is divided into separate meals, and calories and nutritional values are automatically counted.</p>
+					<p>You can choose from the products available in the database or add your own in the "Add product" tab</p>
 
 
 
+				</div>
 
-<div class="jumbotron bg text-center text-center">
-  <div class="transbox">
-  <div class="well">
-      <h1 text-center> FOOD DIARY</h1>
-      <span style="display:inline-block; width: 5px;"></span>
-      <h3> DAYS </h3>
-
-<ul >
-    {% for day in days %}
-    <li><a href="http://127.0.0.1:8000/day/{{day.id}}">{{day}}</a></li>
-    {% endfor %}
-
-
-</ul>
-    </div>
-</div>
-
- </div>
-
+				</div>
+				{% endblock %}
 
 </body>
-</html>
