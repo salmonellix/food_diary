@@ -55,7 +55,7 @@ def productDelete(request, id,rid):
 
 
 @api_view(['POST'])
-def ProductCreate(request):
+def productCreate(request):
     serializer = ProductSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
